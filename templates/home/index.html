@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block body %}	
+
+<div class="container mt-5">
+	<div class="row text-center">
+		<h1> Browse Groups </h1>
+	</div>
+	
+   <div class="row mt-5">
+      <div class="col-md-2">
+         <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+               <label class="form-label">Browse Category</label>
+               <select class="form-select form-select-lg mb-3" name='topic-category'>
+                  <option selected>Select Topics</option>
+                  {% for x in groups %}
+                  <option value="{{ x.id }}">{{ x.name }}</option>
+                  {% endfor %}
+               </select>
+            </div>
+            <div class="mb-3">
+               <button class="btn btn-lg w-100" style="background:  #34495e ;color: white;" type="submit">Browse</button>
+            </div>
+         </form>
+
+         {% if request.user.is_authenticated %}
+         
+         <fieldset class="border p-2" style="background:whitesmoke; ">
+
+	         <!-- only admin section -->
+	         <div class="mb-3">
+				<a class="btn btn-md w-100" href="{% url 'create-group-page' %}" style="background:  #34495e ;color: white;font-size: ">Create Group</a>
+	         </div>
+	         <!-- ends here -->
+      
+
+	         <!-- only admin section -->
+	         <div class="mb-3">
+				<a class="btn btn-md w-100" href="{% url 'create-group-page' %}" style="background:  #34495e ;color: white;font-size: ">Create Post</a>
+	         </div>
+	         <!-- ends here -->
+         	
+         </fieldset>
+
+      	{% endif %}
+
+      </div>
+      <div class="col-md-1"></div>
+      <div class="col-md-9">
+      	<div class="row mt-2 mb-4">
+			<small>Found {{group_count}} Groups </small>
+		</div>
+         <div class="row">
+            {% for group in groups %}
+            <div class="col-md-4 mb-5">
+               <div class="card" style="border: 2px solid  #34495e ;">
+                  <img src="https://dummyimage.com/640x360/fff/aaa" class="card-img-top" alt="...">
+                  <div class="card-body mt-1">
+                     <h3 class="card-title">{{ group.name }}</h3>
+                     <p class="mb-3">{{ group.description }}</p>
+                     <a target="_blank" href="{% url 'group-page' group.id %}" style="background:  #34495e ;color: white;" class="btn btn-lg w-100 ">Join</a>
+                  </div>
+               </div>
+            </div>
+            {% endfor %}
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

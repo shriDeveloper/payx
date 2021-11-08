@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="container mt-5 col-md-5">
+
+	<h1 class="text-center mb-5" >Login </h1>
+	<form method="POST">
+	  {% csrf_token %}
+	  <div class="mb-3">
+	    <label class="form-label">Username</label>
+	    <input type="text" class="form-control" name="username">
+	  </div>
+	  <div class="mb-3">
+	    <label for="exampleInputPassword1" class="form-label">Password</label>
+	    <input type="password" name="password" class="form-control">
+	  </div>
+	  <div class="row mb-3">
+    	<label class="col-md-12 col-form-label">Don't have an account ? Sign Up <a href="{% url 'user-signup-page'%}">here</a></label>
+  	</div>
+	<button type="submit" class="btn btn-lg w-100" style="background:  #34495e ;color: white;">Login</button>
+
+</form>
+</div>
+
+{% endblock %}

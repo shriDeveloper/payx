@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	<form method="POST">
+		{% csrf_token %}
+		<h3>Are you sure , you want to delete {{group.name|lower}} ?</h3>
+		<input type="submit" name="Confirm">
+		<a href="{% url 'group-page' group.id %}">GO Back</a>
+	</form>
+{% endblock %}

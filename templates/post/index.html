@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+	
+
+		{% if request.user == group.user %}
+				
+			<nav class="navbar navbar-expand-lg" style="background:  #f2f3f4 ;">
+		  <a class="navbar-brand" href="#"></a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		    <span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse">
+		    <div class="navbar-nav">
+		      <a class="nav-item nav-link"  href="{% url 'update-group-page' group.id %}" style="color: black;">Edit</a>
+		      <a class="nav-item nav-link" href="{% url 'delete-group-page' group.id %}" style="color: black;">Delete</a>
+		    </div>
+		  </div>
+		</nav>
+
+	{% endif %}
+
+	<div class="container-fluid" style="background:  	#f8f9f9  ;">
+		<div class="row col-md-12">
+			  <div class="px-4 py-5 my-5 text-center">
+			    <h1 class="display-4 fw-bold mb-4">{{ post.title }}</h1>
+			    <div class="col-lg-7 mx-auto">
+			      <p class="lead mb-5">{{ post.summary }}</p>
+			    </div>
+			  </div>
+		</div>
+	</div>
+	<div class="container mt-5">
+		<div class="row col-md-12 mt-5">
+					{{ post.content.html|safe }}
+         </div>
+		</div>
+	</div>
+
+
+{% endblock %}

@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg fixed-top" style="background:  #1b2631;color: white; ">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home-page' %}" style="color: white;">PythonStuffs</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+      	{% if request.user.is_authenticated %} 
+      		<li class="nav-item">
+		 		<a class="nav-link" href="{% url 'user-logout-page'%}" style="color: white;">Logout</a>
+        	</li>
+		{% else %}
+			<li class="nav-item">
+		 		<a class="nav-link" href="{% url 'user-login-page'%}" style="color: white;">Login</a>
+		 	</li>
+
+		 	<li class="nav-item">
+          		<a class="nav-link" href="{% url 'user-signup-page' %}" style="color: white;">Sign Up</a>
+        	</li>
+        
+		{% endif %}
+
+        
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;">
+            More
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Blog</a></li>
+            <li><a class="dropdown-item" href="#">Advertise</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Contact Us</a></li>
+          </ul>
+        </li>
+       
+      </ul>
+      <form class="d-flex" action="/" method="GET">
+        <input class="form-control me-2" type="text" name="q" placeholder="Search Anything here">
+        <button class="btn btn-large btn-outline-secondary" type="submit" style="color: white;">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
